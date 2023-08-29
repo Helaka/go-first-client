@@ -2,15 +2,11 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import Chart from "chart.js";
 import { OutletService } from "../../services/outlet.service";
 import { UsersService } from "../../services/users.service";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-  FormsModule,
-} from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { forkJoin } from "rxjs";
 import { map } from "rxjs/operators";
+import { ToastrService } from "ngx-toastr";
+import { Observable, fromEventPattern } from "rxjs";
 
 // core components
 import {
@@ -39,6 +35,10 @@ export class DashboardComponent implements OnInit {
   selectedDateTo: Date;
   yesCounts: number[] = [];
   noCounts: number[] = [];
+  center = { lat: 7.8731, lng: 80.7718 }; // Sri Lanka
+  zoom = 9;
+
+  markers = [];
 
   yesPercentage: number[] = [];
   primaryYesPercentage: number[] = [];
@@ -77,7 +77,9 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private outletService: OutletService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private toastr: ToastrService,
+    private snackBar: MatSnackBar
   ) {
     this.loadOutlets();
     this.loadLocations();
@@ -420,54 +422,27 @@ export class DashboardComponent implements OnInit {
     this.outletService.getOutletsWithSKUs().subscribe((response) => {});
   }
 
-  // loadData(): void {
-  //   forkJoin({
-  //     skusData: this.outletService.getSKU(),
-  //     countsData: this.outletService.getAvailabilityCounts(),
-  //     filterData: this.outletService.getVisitData(),
-  //   }).subscribe((result) => {
-  //     const skuSubIdToCountsMap: Record<
-  //       number,
-  //       { yesCount: number; noCount: number }
-  //     > = {};
+  loadGpsCoordinates(): void {
+    this.outletService
+      .getVisitCoordinates(
+        this.selectedUser,
+        this.selectedDateFrom,
+        this.selectedDateTo,
+        this.selectedOutlet,
+        this.selectedLocation
+      )
+      .subscribe((response) => {
+        console.log("respinsgps", response);
+        this.markers = this.transformResponseToMarkers(response);
+      });
+  }
 
-  //     console.log("filteData2", result.filterData);
-  //     console.log("countData", result.countsData);
-  //     // Map counts to skuSubIds
-  //     result.countsData.forEach((count) => {
-  //       skuSubIdToCountsMap[count.skuSubId] = {
-  //         yesCount: count.count_ones,
-  //         noCount: count.count_zeros,
-  //       };
-  //     });
-
-  //     this.skus = [];
-  //     this.yesPercentage = [];
-  //     this.noPercentage = [];
-
-  //     result.skusData.forEach((skuItem) => {
-  //       skuItem.skuCategory.forEach((subCategory) => {
-  //         const skuLabel = `${skuItem.sku_name} ${subCategory.sku_type}`;
-  //         this.skus.push(skuLabel);
-  //         const counts = skuSubIdToCountsMap[subCategory.id] || {
-  //           yesCount: 0,
-  //           noCount: 0,
-  //         };
-
-  //         const total = counts.yesCount + counts.noCount;
-
-  //         const yesPercent = total ? (counts.yesCount / total) * 100 : 0;
-
-  //         const noPercent = 100 - yesPercent;
-
-  //         this.yesPercentage.push(yesPercent);
-  //         this.noPercentage.push(noPercent);
-  //       });
-  //     });
-
-  //     this.initializeChart();
-  //   });
-  // }
+  transformResponseToMarkers(response: any[]) {
+    return response.map((item) => {
+      const [lat, lng] = item.gpsLocation.split(",").map(Number);
+      return { lat, lng, label: `${item.id}`, draggable: false };
+    });
+  }
 
   handleChange() {
     this.outletService
@@ -669,10 +644,13 @@ export class DashboardComponent implements OnInit {
         this.selectedLocation
       ),
     }).subscribe((result) => {
-      this.primaryShelfShareLabels = result.shelfShare.map(item=>item.sku_name + " (" + item.sku_type + ")");
-      this.primaryShelfShareYesPercentage = result.shelfShare.map(item => parseFloat(item.frontFacingPercentage));
-  
-      
+      this.primaryShelfShareLabels = result.shelfShare.map(
+        (item) => item.sku_name + " (" + item.sku_type + ")"
+      );
+      this.primaryShelfShareYesPercentage = result.shelfShare.map((item) =>
+        parseFloat(item.frontFacingPercentage)
+      );
+
       // this.primaryShelfShareLabels.push(labels);
       // this.primaryShelfShareYesPercentage.push(values);
       this.initializeChart11();
@@ -680,19 +658,44 @@ export class DashboardComponent implements OnInit {
   }
 
   filterData() {
-    this.loadData2();
-    this.loadPrimaryVisibility();
-    this.loadPlanogram();
-    this.loadCoolerPurity();
-    this.loadDisplayQuality();
-    this.loadCounterTopAvailability();
-    this.loadWallBranding();
-    this.loadCompetitorIntelligence();
-    this.loadOtherDetails();
-    this.loadPrimaryShelfShare();
+    if (
+      !this.selectedUser &&
+      !this.selectedDateFrom &&
+      !this.selectedDateTo &&
+      !this.selectedOutlet &&
+      !this.selectedLocation
+    ) {
+      this.showToast();
+      this.toastr.error("Please select at least one from filters");
+    } else {
+      this.showToast();
+      this.toastr.success("Test Local");
+      this.loadData2();
+      this.loadGpsCoordinates();
+      this.loadPrimaryVisibility();
+      this.loadPlanogram();
+      this.loadCoolerPurity();
+      this.loadDisplayQuality();
+      this.loadCounterTopAvailability();
+      this.loadWallBranding();
+      this.loadCompetitorIntelligence();
+      this.loadOtherDetails();
+      this.loadPrimaryShelfShare();
+    }
+    console.log("selectedUSer", !this.selectedUser);
+    console.log("selectedDateFrom", !this.selectedDateFrom);
+    console.log("selectedDateTo", !this.selectedDateTo);
+    console.log("selectedOutlet", !this.selectedOutlet);
+    console.log("selectedLocation", !this.selectedLocation);
   }
 
   handleLocationChange() {
     console.log(this.selectedLocation);
+  }
+
+  showToast() {
+    this.snackBar.open("Message", "Action", {
+      duration: 2000,
+    });
   }
 }

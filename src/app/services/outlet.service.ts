@@ -26,6 +26,7 @@ export class OutletService {
     return this.http.get<any>(`${this.apiUrl}/outlets/outlets-with-skus`);
   }
 
+  
   // getVisitData():Observable<any>{
   //   return this.http.get<any>(`${this.apiUrl}/visit/filter-data`);
 
@@ -53,6 +54,24 @@ export class OutletService {
       .set("outletId", outletid)
       .set("locationId", locationid);
     return this.http.get<any>(`${this.apiUrl}/visit/filter-data`, {
+      params: params,
+    });
+  }
+
+  getVisitCoordinates(
+    userid: any,
+    datefrom: any,
+    dateto: any,
+    outletid: any,
+    locationid: any
+  ): Observable<any> {
+    let params = new HttpParams()
+      .set("userId", userid)
+      .set("dateFrom", datefrom)
+      .set("dateTo", dateto)
+      .set("outletId", outletid)
+      .set("locationId", locationid);
+    return this.http.get<any>(`${this.apiUrl}/visit/visit-coordinates`, {
       params: params,
     });
   }

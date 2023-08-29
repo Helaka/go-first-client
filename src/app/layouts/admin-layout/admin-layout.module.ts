@@ -21,6 +21,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatNativeDateModule} from '@angular/material/core';
 
+import { GoogleMapsModule } from '@angular/google-maps';
 @NgModule({
   imports: [
     CommonModule,
@@ -34,9 +35,11 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    GoogleMapsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+   
   ],
   declarations: [
     DashboardComponent,

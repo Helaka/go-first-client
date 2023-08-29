@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+    private toastr: ToastrService
   ) { }
 
   login(credentials: { email: string, password: string }) {
@@ -58,10 +60,17 @@ export class AuthService {
 
   isClient() {
     if(this.jwtHelper.decodeToken().email === 'admin@gmail.com'){
+      this.toastr.success("success");
       return true;
     }else{
+      this.toastr.error("you don't have permissions to view");
       return false;
     }
       
+    }
+
+    logout() {
+      this.token = null;
+      localStorage.removeItem('token');
     }
 }

@@ -12,7 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { AuthService } from './auth/auth.service';
+
 
 
 
@@ -20,12 +22,14 @@ import { AuthService } from './auth/auth.service';
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    MatSnackBarModule,
     HttpClientModule,
     ComponentsModule,
     NgbModule,
     RouterModule,
     AppRoutingModule,
     ToastrModule.forRoot(),
+    
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),
