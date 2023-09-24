@@ -307,7 +307,7 @@
       </mat-action-row>
     </mat-expansion-panel>
 
-    <br/>
+    <br />
 
     <mat-expansion-panel
       [expanded]="step === 8"
@@ -335,35 +335,62 @@
       </mat-action-row>
     </mat-expansion-panel>
 
-    <br/>
+    <br />
 
     <mat-expansion-panel
-    [expanded]="step === 9"
-    (opened)="setStep(9)"
-    hideToggle
-    class="custom-panel"
-  >
-    <mat-expansion-panel-header>
-      <mat-panel-title> Primary Shelf share </mat-panel-title>
-      <i class="ni ni-circle-08"></i>
-    </mat-expansion-panel-header>
-    <div class="container">
-      <div style="width: 100%">
-        <canvas
-          id="myChartPrimaryShelfShare"
-          width="700"
-          height="250"
-          #myChartPrimaryShelfShare
-        ></canvas>
+      [expanded]="step === 9"
+      (opened)="setStep(9)"
+      hideToggle
+      class="custom-panel"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Primary Shelf share </mat-panel-title>
+        <i class="ni ni-circle-08"></i>
+      </mat-expansion-panel-header>
+      <div class="container">
+        <div style="width: 100%">
+          <canvas
+            id="myChartPrimaryShelfShare"
+            width="700"
+            height="250"
+            #myChartPrimaryShelfShare
+          ></canvas>
+        </div>
       </div>
-    </div>
-    <mat-action-row>
-      <button mat-button color="warn" (click)="prevStep()">Previous</button>
-      <button mat-button color="primary" (click)="nextStep()">Next</button>
-    </mat-action-row>
-  </mat-expansion-panel>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <br>
+    <mat-expansion-panel
+      [expanded]="step === 10"
+      (opened)="setStep(10)"
+      hideToggle
+      class="custom-panel"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> Primary Shelf share </mat-panel-title>
+        <i class="ni ni-circle-08"></i>
+      </mat-expansion-panel-header>
+      <div class="container">
+        <!-- my-component.component.html -->
+        <google-map [center]="center" [zoom]="zoom">
+          <map-marker
+            *ngFor="let marker of markers"
+            [position]="marker"
+            [label]="marker.label"
+            [options]="{ draggable: marker.draggable }"
+          >
+          </map-marker>
+        </google-map>
+      </div>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
 
-    
     <br />
   </mat-accordion>
 </mat-accordion>
