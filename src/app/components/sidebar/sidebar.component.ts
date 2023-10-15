@@ -9,13 +9,17 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
-    // { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '' },
-    // { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '' },
-    // { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
-    // { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
-    // { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
-    // { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
+    { path: '/availability', title: 'Availability',  icon: 'ni-tv-2 text-primary', class: '' },
+    { path: '/primary-visibility', title: 'Primary Visibility',  icon:'ni-planet text-blue', class: '' },
+    { path: '/primary-shelf-share', title: 'Primary Shelf Share',  icon:'ni-pin-3 text-orange', class: '' },
+    { path: '/planogram', title: 'Planogram',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/cooler-purity', title: 'Cooler Purity',  icon:'ni-bullet-list-67 text-red', class: '' },
+    { path: '/display-unit', title: 'Display Unit',  icon:'ni-key-25 text-info', class: '' },
+    { path: '/counter-availability', title: 'Counter Availability',  icon:'ni-circle-08 text-pink', class: '' },
+    { path: '/wall-branding', title: 'Wall Branding',  icon:'ni-circle-08 text-pink', class: '' },
+    { path: '/competitor-intelligence', title: 'Competitor Intelligence',  icon:'ni-circle-08 text-pink', class: '' },
+    { path: '/other-details', title: 'Other Details',  icon:'ni-circle-08 text-pink', class: '' },
+    { path: '/map', title: 'Map',  icon:'ni-circle-08 text-pink', class: '' }
 ];
 
 @Component({
