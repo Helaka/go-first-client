@@ -18,6 +18,7 @@ import { AuthService } from './auth/auth.service';
 
 
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -28,7 +29,9 @@ import { AuthService } from './auth/auth.service';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+    }),
     
     JwtModule.forRoot({
       config: {
