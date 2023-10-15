@@ -36,7 +36,7 @@ import { AuthService } from './auth/auth.service';
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),
-        allowedDomains: ['http://localhost:3100'],
+        allowedDomains: ['http://13.212.196.209:3100'],
         disallowedRoutes: []
       }
     })

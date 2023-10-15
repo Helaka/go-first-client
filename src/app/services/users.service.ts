@@ -8,7 +8,7 @@ import { Observable, map } from 'rxjs';
 export class UsersService {
 
 
-  private apiUrl = 'http://localhost:3100'; // Replace with your Node.js API URL
+  private apiUrl = 'http://13.212.196.209:3100'; // Replace with your Node.js API URL
 
   constructor(private http: HttpClient) { }
 
