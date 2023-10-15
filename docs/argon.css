@@ -16510,6 +16510,11 @@ a.text-cyan:focus
     color: #fff !important;
 }
 
+.text-navyblue
+{
+    color: #070675 !important;
+}
+
 a.text-white:hover,
 a.text-white:focus
 {

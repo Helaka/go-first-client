@@ -15,11 +15,11 @@ export const ROUTES: RouteInfo[] = [
     { path: '/planogram', title: 'Planogram',  icon:'ni-single-02 text-yellow', class: '' },
     { path: '/cooler-purity', title: 'Cooler Purity',  icon:'ni-bullet-list-67 text-red', class: '' },
     { path: '/display-unit', title: 'Display Unit',  icon:'ni-key-25 text-info', class: '' },
-    { path: '/counter-availability', title: 'Counter Availability',  icon:'ni-circle-08 text-pink', class: '' },
-    { path: '/wall-branding', title: 'Wall Branding',  icon:'ni-circle-08 text-pink', class: '' },
-    { path: '/competitor-intelligence', title: 'Competitor Intelligence',  icon:'ni-circle-08 text-pink', class: '' },
-    { path: '/other-details', title: 'Other Details',  icon:'ni-circle-08 text-pink', class: '' },
-    { path: '/map', title: 'Map',  icon:'ni-circle-08 text-pink', class: '' }
+    { path: '/counter-availability', title: 'Counter Availability',  icon:'ni-check-bold text-green', class: '' },
+    { path: '/wall-branding', title: 'Wall Branding',  icon:'ni-world text-cyan', class: '' },
+    { path: '/competitor-intelligence', title: 'Competitor Intelligence',  icon:'ni-tv-2 text-purple', class: '' },
+    { path: '/other-details', title: 'Other Details',  icon:'ni-spaceship text-pink', class: '' },
+    { path: '/map', title: 'Map',  icon:'ni-square-pin text-red', class: '' }
 ];
 
 @Component({
