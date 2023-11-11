@@ -55,7 +55,7 @@ export class PrimaryVisibilityComponent implements OnInit {
           {
             label: "Primary Shelf Share",
             data: [this.primaryYesPercentage, this.primaryNoPercentage],
-            backgroundColor: ["red", "pink"],
+            backgroundColor: ["red", "blue"],
             hoverOffset: 4,
           },
         ],

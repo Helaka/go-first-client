@@ -65,7 +65,7 @@ export class CounterAvailabilityComponent implements OnInit {
               this.counterAvailabilityYesPercentage,
               this.counterAvailabilityNoPecentage,
             ],
-            backgroundColor: ["purple", "yellow"],
+            backgroundColor: ["red", "blue"],
             hoverOffset: 4,
           },
         ],

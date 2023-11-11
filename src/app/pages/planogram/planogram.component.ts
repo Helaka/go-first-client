@@ -51,7 +51,7 @@ export class PlanogramComponent implements OnInit {
           {
             label: "Planogram",
             data: [this.planogramYesPercentage, this.planogramNoPercentage],
-            backgroundColor: ["blue", "yellow"],
+            backgroundColor: ["red", "blue"],
             hoverOffset: 4,
           },
         ],

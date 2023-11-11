@@ -65,7 +65,7 @@ export class WallBrandingComponent implements OnInit {
               this.wallBrandingYesPercentage,
               this.wallBrandingNoPercentage,
             ],
-            backgroundColor: ["orange", "blue"],
+            backgroundColor: ["red", "blue"],
             hoverOffset: 4,
           },
         ],

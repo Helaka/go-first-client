@@ -65,7 +65,7 @@ export class DisplayUnitComponent implements OnInit {
               this.displayQualityYesPercentage,
               this.displayQualityNoPercentage,
             ],
-            backgroundColor: ["yellow", "green"],
+            backgroundColor: ["red", "blue"],
             hoverOffset: 4,
           },
         ],
