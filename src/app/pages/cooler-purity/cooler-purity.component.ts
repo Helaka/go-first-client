@@ -65,7 +65,7 @@ export class CoolerPurityComponent implements OnInit {
               this.coolerPurityYesPercentage,
               this.coolerPurityNoPercentage,
             ],
-            backgroundColor: ["orange", "green"],
+            backgroundColor: ["red", "blue"],
             hoverOffset: 4,
           },
         ],

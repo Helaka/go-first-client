@@ -10,7 +10,7 @@ import { ToastrService } from "ngx-toastr";
 })
 export class AuthService {
   private token: any;
-  private loginUrl = "http://localhost:3100/login";
+  private loginUrl = "http://13.212.196.209:3100/login";
   private accessToken: any;
 
   constructor(

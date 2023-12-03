@@ -6,7 +6,7 @@ import { Observable, map } from "rxjs";
   providedIn: "root",
 })
 export class OutletService {
-  private apiUrl = "http://localhost:3100"; // Replace with your Node.js API URL
+  private apiUrl = "http://13.212.196.209:3100"; // Replace with your Node.js API URL
 
   constructor(private http: HttpClient) {}
 
