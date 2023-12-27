@@ -12,6 +12,7 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./other-details.component.css"],
 })
 export class OtherDetailsComponent implements OnInit {
+  chartInstance: Chart | null = null;
   constructor(
     private outletService: OutletService,
     private usersService: UsersService,
@@ -53,9 +54,12 @@ export class OtherDetailsComponent implements OnInit {
   }
 
   initializeChart() {
+    if(this.chartInstance){
+      this.chartInstance.destroy();
+    }
     this.canvas = this.myChartOtherDetails.nativeElement;
     this.ctx = this.canvas.getContext("2d");
-    new Chart(this.ctx, {
+   this.chartInstance =  new Chart(this.ctx, {
       type: "bar",
       data: {
         datasets: [
@@ -70,6 +74,8 @@ export class OtherDetailsComponent implements OnInit {
         labels: this.otherDetailsLabels,
       },
     });
+
+    this.otherDetailsYesPercentage = [];
   }
 
   loadOtherDetails(): void {

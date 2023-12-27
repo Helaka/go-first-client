@@ -14,6 +14,7 @@ import { Observable, fromEventPattern } from "rxjs";
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
+  chartInstance: Chart | null = null;
   locations: any[] = [];
   outletLocations: any = [];
   skus: any[] = [];
@@ -50,9 +51,12 @@ export class DashboardComponent implements OnInit {
   @ViewChild("myChartAvailability") myChartAvailability: any;
 
   initializeChart() {
+    if (this.chartInstance) {
+      this.chartInstance.destroy(); // Destroy the old instance before creating a new one
+    }
     this.canvas = this.myChartAvailability.nativeElement;
     this.ctx = this.canvas.getContext("2d");
-    new Chart(this.ctx, {
+    this.chartInstance = new Chart(this.ctx, {
       type: "bar",
       data: {
         datasets: [
@@ -127,10 +131,11 @@ export class DashboardComponent implements OnInit {
       ),
     }).subscribe((result) => {
       result.filterData.forEach((skuItem) => {
+        console.log("SkuItems", skuItem)
         const skuLable = `${skuItem.sku_name} ${skuItem.sku_type}`;
         this.skus.push(skuLable);
-        this.yesPercentage.push(skuItem.yesPercentage);
-        this.noPercentage.push(skuItem.noPercentage);
+        this.yesPercentage.push(skuItem.YesPercentage);
+        this.noPercentage.push(skuItem.NoPercentage);
       });
       this.initializeChart();
     });

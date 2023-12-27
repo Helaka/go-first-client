@@ -55,6 +55,9 @@ export class CompetitorIntelligenceComponent implements OnInit {
   }
 
   initializeChart() {
+    if(this.canvas){
+      this.canvas.destroy();
+    }
     this.canvas = this.myChartCompetitorIntelligence.nativeElement;
     this.ctx = this.canvas.getContext("2d");
     new Chart(this.ctx, {
@@ -72,9 +75,11 @@ export class CompetitorIntelligenceComponent implements OnInit {
         labels: this.competitiorIntelligenceLabels,
       },
     });
+    this.competitorIntelligenceYesPercentage = [];
   }
 
   loadCompetitorIntelligence(): void {
+    console.log("im here");
     forkJoin({
       competitorIntelligence: this.outletService.getCompetitorIntelligence(
         this.selectedUser,
@@ -85,6 +90,7 @@ export class CompetitorIntelligenceComponent implements OnInit {
       ),
     }).subscribe((result) => {
       result.competitorIntelligence.forEach((intelligence) => {
+        console.log("inte", intelligence);
         for (let i = 1; i < Object.keys(intelligence).length; i++) {
           const keys = Object.keys(intelligence)[i];
           const values = Object.values(intelligence)[i];

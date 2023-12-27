@@ -45,6 +45,9 @@ export class PrimaryVisibilityComponent implements OnInit {
   selectedDateTo: Date;
 
   initializeChart2() {
+    if(this.canvas){
+      this.canvas.destroy();
+    }
     this.canvas = new Chart("myChartPrimaryVisibility", {
       type: "pie", //this denotes tha type of chart
 
@@ -55,7 +58,7 @@ export class PrimaryVisibilityComponent implements OnInit {
           {
             label: "Primary Shelf Share",
             data: [this.primaryYesPercentage, this.primaryNoPercentage],
-            backgroundColor: ["red", "pink"],
+            backgroundColor: ["red", "blue"],
             hoverOffset: 4,
           },
         ],
@@ -64,6 +67,8 @@ export class PrimaryVisibilityComponent implements OnInit {
         aspectRatio: 2.5,
       },
     });
+    this.primaryYesPercentage = [];
+    this.primaryNoPercentage = [];
   }
 
   loadPrimaryVisibility(): void {
@@ -77,8 +82,9 @@ export class PrimaryVisibilityComponent implements OnInit {
       ),
     }).subscribe((result) => {
       result.primaryShelfShare.forEach((primary) => {
+        console.log("Primary", primary);
         this.primaryYesPercentage.push(primary.yesCountPercentage),
-          this.primaryNoPercentage.push(primary.noCountPercentage);
+        this.primaryNoPercentage.push(primary.noCountPercentage);
       });
       this.initializeChart2();
     });
@@ -107,6 +113,7 @@ export class PrimaryVisibilityComponent implements OnInit {
       this.toastr.error("Please select both From and To dates");
     } else {
       this.loadPrimaryVisibility();
+      
     }
   }
 

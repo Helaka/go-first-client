@@ -1,103 +1,102 @@
 <div class="header bg-gradient-warning pb-8 pt-5 pt-md-8">
-    <div class="container-fluid">
-      <div class="header-body">
-        <div class="row">
-          <div class="col-xl-3 col-lg-6">
-            <div class="form-group">
-              <label for="myDropdown">Select Users:</label>
-              <select class="form-control" [(ngModel)]="selectedUser">
-                <option *ngFor="let user of users" [value]="user.id">
-                  {{ user.email }}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-6">
-            <div class="form-group">
-              <label for="from">From:</label>
-              <input
-                class="form-control"
-                type="date"
-                id="from"
-                name="from"
-                [(ngModel)]="selectedDateFrom"
-              />
-            </div>
-          </div>
-  
-          <div class="col-xl-3 col-lg-6">
-            <div class="form-group">
-              <label for="from">To:</label>
-              <input
-                class="form-control"
-                type="date"
-                id="to"
-                name="to"
-                [(ngModel)]="selectedDateTo"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="container-fluid">
+    <div class="header-body">
       <div class="row">
         <div class="col-xl-3 col-lg-6">
           <div class="form-group">
-            <label for="myDropdown">Select outlet:</label>
-            <select
-              class="form-control"
-              [(ngModel)]="selectedOutlet"
-              (change)="handleChange()"
-            >
-              <option *ngFor="let outlet of outlets" [value]="outlet.id">
-                {{ outlet.name }}
+            <label for="myDropdown">Select Users:</label>
+            <select class="form-control" [(ngModel)]="selectedUser">
+              <option *ngFor="let user of users" [value]="user.id">
+                {{ user.email }}
               </option>
             </select>
           </div>
         </div>
         <div class="col-xl-3 col-lg-6">
           <div class="form-group">
-            <label for="myDropdown">Select Location:</label>
-            <select
+            <label for="from">From:</label>
+            <input
               class="form-control"
-              [(ngModel)]="selectedLocation"
-              (change)="handleLocationChange()"
-            >
-              <option
-                *ngFor="let outletLocation of outletLocations"
-                [value]="outletLocation.id"
-              >
-                {{ outletLocation.city }}
-              </option>
-            </select>
+              type="date"
+              id="from"
+              name="from"
+              [(ngModel)]="selectedDateFrom"
+            />
           </div>
         </div>
+
         <div class="col-xl-3 col-lg-6">
           <div class="form-group">
-            <button
-              style="
-                margin-left: 10px;
-                margin-right: 10px;
-                background-color: orange;
-              "
-              class="btn btn-warning mt-4"
-              (click)="filterData()"
-            >
-              Filter
-            </button>
+            <label for="from">To:</label>
+            <input
+              class="form-control"
+              type="date"
+              id="to"
+              name="to"
+              [(ngModel)]="selectedDateTo"
+            />
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <br />
-  <div class="container">
-    <div style="width: 100%">
-      <canvas
-        id="myChartPrimaryVisibility"
-        width="700"
-        height="250"
-        #myChartPrimaryVisibility
-      ></canvas>
+    <div class="row">
+      <div class="col-xl-3 col-lg-6">
+        <div class="form-group">
+          <label for="myDropdown">Select outlet:</label>
+          <select
+            class="form-control"
+            [(ngModel)]="selectedOutlet"
+            (change)="handleChange()"
+          >
+            <option *ngFor="let outlet of outlets" [value]="outlet.id">
+              {{ outlet.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6">
+        <div class="form-group">
+          <label for="myDropdown">Select Location:</label>
+          <select
+            class="form-control"
+            [(ngModel)]="selectedLocation"
+            (change)="handleLocationChange()"
+          >
+            <option
+              *ngFor="let outletLocation of outletLocations"
+              [value]="outletLocation.id"
+            >
+              {{ outletLocation.city }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6">
+        <div class="form-group">
+          <button
+            style="
+              margin-left: 10px;
+              margin-right: 10px;
+              background-color: orange;
+            "
+            class="btn btn-warning mt-4"
+            (click)="filterData()"
+          >
+            Filter
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-  
+</div>
+<br />
+<div class="container">
+  <div style="width: 100%">
+    <canvas
+      id="myChartPrimaryVisibility"
+      width="700"
+      height="250"
+      #myChartPrimaryVisibility
+    ></canvas>
+  </div>
+</div>

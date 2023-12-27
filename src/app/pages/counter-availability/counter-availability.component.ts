@@ -52,6 +52,9 @@ export class CounterAvailabilityComponent implements OnInit {
   }
 
   initializeChart() {
+    if(this.canvas){
+      this.canvas.destroy();
+    }
     this.canvas = new Chart("myChartCounterAvailability", {
       type: "pie", //this denotes tha type of chart
 
@@ -74,6 +77,9 @@ export class CounterAvailabilityComponent implements OnInit {
         aspectRatio: 2.5,
       },
     });
+
+    this.counterAvailabilityYesPercentage = [];
+    this.counterAvailabilityNoPecentage = [];
   }
 
   loadCounterTopAvailability(): void {
@@ -87,6 +93,7 @@ export class CounterAvailabilityComponent implements OnInit {
       ),
     }).subscribe((result) => {
       result.counterAvailability.forEach((counterAvilability) => {
+        console.log("ava", counterAvilability);
         this.counterAvailabilityYesPercentage.push(
           counterAvilability.yesCountPercentage
         ),

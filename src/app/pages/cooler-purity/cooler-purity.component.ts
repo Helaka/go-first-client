@@ -52,6 +52,9 @@ export class CoolerPurityComponent implements OnInit {
   }
 
   initializeChart() {
+    if(this.canvas){
+      this.canvas.destroy()
+    }
     this.canvas = new Chart("myChartCoolerPurity", {
       type: "pie", //this denotes tha type of chart
 
@@ -74,6 +77,9 @@ export class CoolerPurityComponent implements OnInit {
         aspectRatio: 2.5,
       },
     });
+
+    this.coolerPurityYesPercentage = [];
+    this.coolerPurityNoPercentage = [];
   }
 
   loadCoolerPurity(): void {
@@ -87,6 +93,7 @@ export class CoolerPurityComponent implements OnInit {
       ),
     }).subscribe((result) => {
       result.coolerPurity.forEach((purity) => {
+        console.log(purity)
         this.coolerPurityYesPercentage.push(purity.yesCountPercentage),
           this.coolerPurityNoPercentage.push(purity.noCountPercentage);
       });

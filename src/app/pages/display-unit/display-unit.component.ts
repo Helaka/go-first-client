@@ -52,6 +52,9 @@ export class DisplayUnitComponent implements OnInit {
   }
 
   initializeChart() {
+    if(this.canvas){
+      this.canvas.destroy();
+    }
     this.canvas = new Chart("myChartDisplayQuality", {
       type: "pie", //this denotes tha type of chart
 
@@ -74,6 +77,9 @@ export class DisplayUnitComponent implements OnInit {
         aspectRatio: 2.5,
       },
     });
+
+    this.displayQualityYesPercentage = [];
+    this.displayQualityNoPercentage = [];
   }
 
   loadDisplayQuality(): void {
