@@ -52,6 +52,9 @@ export class WallBrandingComponent implements OnInit {
   }
 
   initializeChart() {
+    if(this.canvas){
+      this.canvas.destroy();
+    }
     this.canvas = new Chart("myChartWallBranding", {
       type: "pie", //this denotes tha type of chart
 
@@ -74,6 +77,9 @@ export class WallBrandingComponent implements OnInit {
         aspectRatio: 2.5,
       },
     });
+
+    this.wallBrandingYesPercentage = [];
+    this.wallBrandingNoPercentage = [];
   }
 
   loadWallBranding(): void {
@@ -87,6 +93,7 @@ export class WallBrandingComponent implements OnInit {
       ),
     }).subscribe((result) => {
       result.wallBranding.forEach((branding) => {
+        console.log("branding", branding);
         this.wallBrandingYesPercentage.push(branding.yesCountPercentage),
           this.wallBrandingNoPercentage.push(branding.noCountPercentage);
       });

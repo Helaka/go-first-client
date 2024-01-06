@@ -83,6 +83,7 @@ export class PrimaryShelfShareComponent implements OnInit {
         this.selectedLocation
       ),
     }).subscribe((result) => {
+      console.log("result", result);
       this.primaryShelfShareLabels = result.shelfShare.map(
         (item) => item.sku_name + " (" + item.sku_type + ")"
       );

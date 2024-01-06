@@ -41,6 +41,9 @@ export class PlanogramComponent implements OnInit {
   selectedDateTo: Date;
 
   initializeChart() {
+    if(this.canvas){
+      this.canvas.destroy();
+    }
     this.canvas = new Chart("myChartPlanogram", {
       type: "pie", //this denotes tha type of chart
 
@@ -60,6 +63,8 @@ export class PlanogramComponent implements OnInit {
         aspectRatio: 2.5,
       },
     });
+    this.planogramYesPercentage = [];
+    this.planogramNoPercentage = [];
   }
 
   loadUsers(): void {
@@ -85,8 +90,9 @@ export class PlanogramComponent implements OnInit {
       ),
     }).subscribe((result) => {
       result.palnogram.forEach((primary) => {
+        console.log("palgrm", primary);
         this.planogramYesPercentage.push(primary.yesCountPercentage),
-          this.planogramNoPercentage.push(primary.noCountPercentage);
+          this.planogramNoPercentage.push(primary.NoPercentage);
       });
       this.initializeChart();
     });

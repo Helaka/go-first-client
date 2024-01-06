@@ -13,3 +13,60 @@
 #link-word:hover {
     color: orange;
 }
+
+.items-menu {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .nav-item {
+    margin: 5px 0;
+  }
+
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-link i {
+    margin-right: 10px;
+  }
+
+  .nav-link span {
+    color: #fff;
+  }
+
+  .navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .btn-logout {
+    width: 150px;
+    background-color: orange;
+    color: black;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Makes it rounded */
+    overflow: hidden; /* Ensures the content fits within the circle */
+  }
+
+  .avatar i {
+    color: white; /* Sets the icon color to white */
+    font-weight: bold; /* Makes the icon bolder */
+    font-size: 1.6em; /* Adjusts the size of the icon */
+  }
