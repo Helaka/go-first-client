@@ -134,8 +134,8 @@ export class DashboardComponent implements OnInit {
         console.log("SkuItems", skuItem)
         const skuLable = `${skuItem.sku_name} ${skuItem.sku_type}`;
         this.skus.push(skuLable);
-        this.yesPercentage.push(skuItem.YesPercentage);
-        this.noPercentage.push(skuItem.NoPercentage);
+        this.yesPercentage.push(skuItem.yesPercentage);
+        this.noPercentage.push(skuItem.noPercentage);
       });
       this.initializeChart();
     });
