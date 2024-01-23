@@ -15,18 +15,19 @@ import { WallBrandingComponent } from "../../pages/wall-branding/wall-branding.c
 import { CompetitorIntelligenceComponent } from "../../pages/competitor-intelligence/competitor-intelligence.component";
 import { OtherDetailsComponent } from "../../pages/other-details/other-details.component";
 import { MapComponent } from "../../pages/map/map.component";
+import { AuthGuard } from "src/app/auth.guard";
 
 export const AdminLayoutRoutes: Routes = [
-  { path: "availability", component: DashboardComponent },
-  { path: "primary-visibility", component: PrimaryVisibilityComponent },
-  { path: "primary-shelf-share", component: PrimaryShelfShareComponent },
-  { path: "planogram", component: PlanogramComponent },
-  { path: "cooler-purity", component: CoolerPurityComponent },
-  { path: "display-unit", component: DisplayUnitComponent },
-  { path: "maps", component: MapsComponent },
-  { path: "counter-availability", component: CounterAvailabilityComponent },
-  { path: "wall-branding", component: WallBrandingComponent },
-  { path: "competitor-intelligence", component: CompetitorIntelligenceComponent },
-  { path: "other-details", component: OtherDetailsComponent },
-  { path: "map", component:MapComponent}
+  { path: "availability", component: DashboardComponent, canActivate:[AuthGuard] },
+  { path: "primary-visibility", component: PrimaryVisibilityComponent, canActivate:[AuthGuard] },
+  { path: "primary-shelf-share", component: PrimaryShelfShareComponent, canActivate:[AuthGuard] },
+  { path: "planogram", component: PlanogramComponent, canActivate:[AuthGuard] },
+  { path: "cooler-purity", component: CoolerPurityComponent, canActivate:[AuthGuard] },
+  { path: "display-unit", component: DisplayUnitComponent , canActivate:[AuthGuard]},
+  { path: "maps", component: MapsComponent, canActivate:[AuthGuard] },
+  { path: "counter-availability", component: CounterAvailabilityComponent, canActivate:[AuthGuard] },
+  { path: "wall-branding", component: WallBrandingComponent, canActivate:[AuthGuard] },
+  { path: "competitor-intelligence", component: CompetitorIntelligenceComponent , canActivate:[AuthGuard]},
+  { path: "other-details", component: OtherDetailsComponent, canActivate:[AuthGuard] },
+  { path: "map", component:MapComponent, canActivate:[AuthGuard]}
 ];

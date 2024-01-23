@@ -82,7 +82,6 @@ export class PrimaryVisibilityComponent implements OnInit {
       ),
     }).subscribe((result) => {
       result.primaryShelfShare.forEach((primary) => {
-        console.log("Primary", primary);
         this.primaryYesPercentage.push(primary.yesCountPercentage),
         this.primaryNoPercentage.push(primary.noCountPercentage);
       });

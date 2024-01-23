@@ -26,12 +26,6 @@ export class AuthService {
         localStorage.setItem("access_token", response.token);
         this.isClient();
       }),
-      // catchError(error => {
-      //   if (error.status === 401) {
-      //     return throwError('Incorrect email or password');
-      //   }
-      //   return throwError('An unknown error occurred');
-      // })
       catchError((error) => {
         if (error.status === 401) {
           return throwError("Incorrect email or password");
@@ -65,6 +59,6 @@ export class AuthService {
 
   logout() {
     this.token = null;
-    localStorage.removeItem("token");
+    localStorage.removeItem("access_token");
   }
 }
